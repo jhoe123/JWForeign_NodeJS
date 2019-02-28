@@ -1,8 +1,12 @@
 // ----------------------------------------------------------------------------
 // Copyright (c) 2015 Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
-
 require('dotenv').config();
+
+if (process.env.DEBUG === "true") {
+    process.env.PORT="4000";
+    process.env.DB_HOST="localhost"
+}
 
 // This is a base-level Azure Mobile App SDK.
 var express = require('express');
