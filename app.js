@@ -2,7 +2,7 @@
 // Copyright (c) 2015 Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 
-require('dotenv').config();
+//require('dotenv').config();
 
 // This is a base-level Azure Mobile App SDK.
 var express = require('express');

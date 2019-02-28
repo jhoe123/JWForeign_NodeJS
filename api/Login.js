@@ -12,7 +12,7 @@ module.exports = {
             'inner join ContactData contact on usr.username = contact.username ' +
             'where usr.username = \'' + username + '\''
         };
-
+        console.log(process.env.OPENSHIFT_MYSQL_DB_URL );
         database.execute(query)
             .then(
                 function(results)
