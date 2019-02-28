@@ -22,8 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
-    "build": "true"
+    "start": "node app.js"
   },
   "main": "app.js"
 }
