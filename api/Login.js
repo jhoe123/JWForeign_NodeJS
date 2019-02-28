@@ -6,7 +6,7 @@ module.exports = {
     "post": function (req, res, next) {
         var username = req.query.username;
         var pass = req.query.pass;
-        console.log(req.query);
+        
         var query = {
             sql: 'select contact.*, usr.pass from UserData usr ' +
             'inner join ContactData contact on usr.username = contact.username ' +
@@ -31,7 +31,7 @@ module.exports = {
                     }
                 },
                 (err) => {
-                    console.log(err);
+                    //console.log(err);
                 })
             
     }

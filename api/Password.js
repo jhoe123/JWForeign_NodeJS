@@ -1,6 +1,7 @@
 var twilioSid = process.env["TWILIO_ACCOUNT_SID"];
 var twilioAuthToken = process.env["TWILIO_AUTH_TOKEN"];
 var twilioNumber = process.env["TWILIO_NUMBER"];
+var database = require('../utils/database');
 var twilio = require('twilio');
 var client = new twilio(twilioSid, twilioAuthToken);
 
@@ -21,7 +22,7 @@ module.exports = {
             ]   
         };
         
-        req.azureMobile.data.execute(query)
+        database.execute(query)
             .then( function(results)
             {
                 if (results.length >= 1)

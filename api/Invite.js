@@ -5,6 +5,7 @@ var googlePlayLink = 'https://play.google.com/store/apps/details?id=com.jrgames.
 var googlePlayLinkTester = 'https://play.google.com/apps/testing/com.jrgames.foreignlanguage';
 var twilio = require('twilio');
 var client = new twilio(twilioSid, twilioAuthToken);
+const database = require('../utils/database');
  
 var INVITE_SENT = 0;
 var INVITE_NOT_YET = -1;
@@ -21,7 +22,7 @@ module.exports = {
           sql: "select status from InviteData where mobile = \'" + req.query.mobile + "\'"
         };
         
-        req.azureMobile.data.execute(query)
+        database.execute(query)
             .then(function(results)
             {
                 console.log(results);

@@ -1,3 +1,4 @@
+const database = require('../utils/database');
 
 module.exports = {
     
@@ -9,7 +10,7 @@ module.exports = {
           sql: 'select id from UserData where username = \'' + username + '\''
         };
         
-        req.azureMobile.data.execute(query)
+        database.execute(query)
             .then(function(results)
             {
                 // is the username found?
@@ -58,7 +59,7 @@ module.exports = {
             ]
         };
         
-        req.azureMobile.data.execute(query).
+        database.execute(query).
             then( function(results)
             {
                 res.json(results);
