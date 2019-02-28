@@ -3,7 +3,8 @@
 // ----------------------------------------------------------------------------
 
 //require('dotenv').config();
-console.log(process.env.OPENSHIFT_MYSQL_DB_URL );
+console.log(process.env.MYSQL_SERVICE_HOST );
+console.log(process.env.MYSQL_SERVICE_PORT );
 
 // This is a base-level Azure Mobile App SDK.
 var express = require('express');
