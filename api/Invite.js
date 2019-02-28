@@ -52,7 +52,7 @@ module.exports = {
             sql: "select status from InviteData where mobile = \'" + mobile + "\' and status = " + INVITE_ACCEPTED
         };
         
-        req.azureMobile.data.execute(query)
+        database.execute(query)
             .then(function(results)
             {
                 // was the invite was already consumed?
@@ -67,7 +67,7 @@ module.exports = {
                     sql: "select username, fname, lname from UserData where username = \'" + inviterUsername + "\'"
                 };
                 
-                req.azureMobile.data.execute(query)
+                database.execute(query)
                     .then( function(results)
                     {
                         if (results.length == 1)
@@ -91,10 +91,10 @@ module.exports = {
                                 
                                 // STEP 4: add invite info to database. id, mobilenumber, userType, status
                                 query = {
-                                    sql:    "if not exists(select id from InviteData where mobile = @mobile) " +
-                                                "insert into InviteData(inviter, mobile, userType, status) values(@inviter, @mobile, @userType, @inviteStatus) " +
+                                    sql:    "if not exists(select id from InviteData where mobile = \'"+mobile+"\') " +
+                                                "insert into InviteData(inviter, mobile, userType, status) values(\'"+inviterInfo.username+"\', \'"+mobile+"\', \'"+userType+"\', \'"+INVITE_SENT+"\') " +
                                             "else " + 
-                                                "update InviteData set userType = @userType, inviter = @inviter where mobile = @mobile ",
+                                                "update InviteData set userType = \'"+userType+"\', inviter = \'"+inviterInfo.username+"\' where mobile = \'"+mobile+"\' ",
                                     parameters: [
                                         { name: 'mobile', value: mobile},
                                         { name: 'inviter', value: inviterInfo.username },
@@ -103,7 +103,7 @@ module.exports = {
                                     ]
                                 };
                                 
-                                req.azureMobile.data.execute(query)
+                                database.execute(query)
                                     .then( function(results) {
                                         
                                         // FINAL STEP: return result

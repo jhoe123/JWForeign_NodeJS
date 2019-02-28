@@ -40,24 +40,14 @@ module.exports = {
         var contactId = req.query.cId;
         
         // add user only if username is not yet existed
-        var query = {
-            sql: 
-            'if not exists(select * from UserData where username = @username) ' + 
+        var query = 
+            'if not exists(select * from UserData where username = \''+username+'\') ' + 
             'insert UserData(fname, lname, username, pass, cong, userType, inviteId) '+ 
-                    'values(@fname, @lname, @username, @pass, @cong, (select userType from InviteData where mobile = @mobile), (select id from InviteData where mobile = @mobile)) ' +
-            'insert ContactData(id, createdBy, firstname, lastname, username, congregation) values(@cId, @username, @fname, @lname, @username, @cong) ' +
+                    'values(\''+fname+'\', \''+lname+'\',\''+username+'\',\''+pass+'\', \''+cong+'\', (select userType from InviteData where mobile = \''+mobile+'\'), (select id from InviteData where mobile = \''+mobile+'\')) ' +
+            'insert ContactData(id, createdBy, firstname, lastname, username, congregation) values(\''+cId+'\', \''+username+'\',\''+fname+'\', \''+lname+'\',\''+username+'\', \''+cong+'\') ' +
             // set the invite status for this user as accepted
-            "update InviteData set status = 1 where mobile = @mobile",
-            parameters: [
-                { name: 'fname', value: fname},
-                { name: 'lname', value: lname},
-                { name: 'username', value: username},
-                { name: 'pass', value: pass},
-                { name: 'cong', value: cong},
-                { name: 'cId', value: contactId },
-                { name: 'mobile', value: mobile }
-            ]
-        };
+            "update InviteData set status = 1 where mobile = \'"+mobile+"\'";
+        
         
         database.execute(query).
             then( function(results)

@@ -13,14 +13,10 @@ module.exports = {
         // username to get the password
         var username = req.query.username;
         
-        var query = {
-            sql:"select usr.pass, intv.mobile from UserData usr " +
+        var query = 
+                "select usr.pass, intv.mobile from UserData usr " +
                 "inner join InviteData intv on usr.inviteId = intv.id " +
-                "where usr.username = @username",
-            parameters: [
-                {name: "username", value: username}
-            ]   
-        };
+                "where usr.username = '" + username + "'";
         
         database.execute(query)
             .then( function(results)
@@ -47,7 +43,8 @@ module.exports = {
                 {
                     res.json({success: false, message: "User name is not existed."});
                 }
-            })
-            .catch(next);
+            },
+            (err) => console.log(err)
+            );
     }
 };
