@@ -25,5 +25,5 @@ initModule(invite, "invite");
 initModule(login, 'login');
 initModule(pass, 'password');
 initModule(register, 'register');
-console.log("host " + process.env.OPENSHIFT_MYSQL_DB_HOST);
+
 app.listen( process.env.PORT, () => console.log( "API start listening to PORT = " + process.env.PORT));
