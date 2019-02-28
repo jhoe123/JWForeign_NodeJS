@@ -2,9 +2,7 @@
 // Copyright (c) 2015 Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 
-//require('dotenv').config();
-console.log(process.env.MYSQL_SERVICE_HOST );
-console.log(process.env.MYSQL_SERVICE_PORT );
+require('dotenv').config();
 
 // This is a base-level Azure Mobile App SDK.
 var express = require('express');
