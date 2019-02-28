@@ -20,5 +20,9 @@
     "twilio": "^3.28.1",
     "mysql": "^2.16.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "main": "app.js"
 }
